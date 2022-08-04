@@ -1,0 +1,20 @@
+########## MAF (map and ped files) ##########
+
+# data:
+# Droso_F0
+# Droso_F025
+# Droso_ALL
+
+### MAF: 0.01, 0.025, 0.05
+
+./plink1.9 --file Droso_ALL --aec --maf 0.01 --recode --out Droso_ALL_MAF0.01
+./plink1.9 --file Droso_ALL --aec --maf 0.025 --recode --out Droso_ALL_MAF0.025
+./plink1.9 --file Droso_ALL --aec --maf 0.05 --recode --out Droso_ALL_MAF0.05
+
+./plink1.9 --file Droso_F0 --aec --maf 0.01 --recode --out Droso_F0_MAF0.01
+./plink1.9 --file Droso_F0 --aec --maf 0.025 --recode --out Droso_F0_MAF0.025
+./plink1.9 --file Droso_F0 --aec --maf 0.05 --recode --out Droso_F0_MAF0.05
+
+./plink1.9 --file Droso_F025 --aec --maf 0.01 --recode --out Droso_F025_MAF0.01
+./plink1.9 --file Droso_F025 --aec --maf 0.025 --recode --out Droso_F025_MAF0.025
+./plink1.9 --file Droso_F025 --aec --maf 0.05 --recode --out Droso_F025_MAF0.05

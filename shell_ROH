@@ -1,0 +1,277 @@
+########## Modification of (default) PLINK parameters for ROH detection ##########
+# temp7 contains the F values for each individual
+
+# data:
+# Droso_F0
+# Droso_F025
+# Droso_ALL
+
+
+# ********* FROH-0.1 ********* #
+
+### NO LD PRUNNING ###
+
+./plink1.9 --file Droso_F0 --aec --homozyg-kb 100 --homozyg --out A_Droso_F0
+sed '1d' A_Droso_F0.hom.indiv > temp6
+awk '{print ($5/119000)}' temp6 > temp7
+rm temp6
+
+./plink1.9 --file Droso_F025 --aec --homozyg-kb 100 --homozyg --out A_Droso_F025
+sed '1d' A_Droso_F025.hom.indiv > temp6
+awk '{print ($5/119000)}' temp6 > temp7
+rm temp6
+
+./plink1.9 --file Droso_ALL --aec --homozyg-kb 100 --homozyg --out A_Droso_ALL
+sed '1d' A_Droso_ALL.hom.indiv > temp6
+awk '{print ($5/119000)}' temp6 > temp7
+rm temp6
+
+
+### --homozyg-density 70, 5, 1 ###
+
+./plink1.9 --file Droso_F0 --aec --indep-pairwise 50 5 0.9 --out prunned
+./plink1.9 --file Droso_F0 --aec --make-bed --recode --extract prunned.prune.in --out data_prunned
+./plink1.9 --file data_prunned --aec --homozyg-kb 100 --homozyg --homozyg-density 70 --out A_Droso_F0
+sed '1d' A_Droso_F0.hom.indiv > temp6
+awk '{print ($5/119000)}' temp6 > temp7
+rm temp6
+
+./plink1.9 --file Droso_F025 --aec --indep-pairwise 50 5 0.9 --out prunned
+./plink1.9 --file Droso_F025 --aec --make-bed --recode --extract prunned.prune.in --out data_prunned
+./plink1.9 --file data_prunned --aec --homozyg-kb 100 --homozyg --homozyg-density 70  --out A_Droso_F025
+sed '1d' A_Droso_F025.hom.indiv > temp6
+awk '{print ($5/119000)}' temp6 > temp7
+rm temp6
+
+./plink1.9 --file Droso_ALL --aec --indep-pairwise 50 5 0.9 --out prunned
+./plink1.9 --file Droso_ALL --aec --make-bed --recode --extract prunned.prune.in --out data_prunned
+./plink1.9 --file data_prunned --aec --homozyg-kb 100 --homozyg --homozyg-density 70  --out A_Droso_ALL
+sed '1d' A_Droso_ALL.hom.indiv > temp6
+awk '{print ($5/119000)}' temp6 > temp7
+rm temp6
+
+
+### --homozyg-gap 500, 50, 10 ###
+
+./plink1.9 --file Droso_F0 --aec --indep-pairwise 50 5 0.9 --out prunned
+./plink1.9 --file Droso_F0 --aec --make-bed --recode --extract prunned.prune.in --out data_prunned
+./plink1.9 --file data_prunned --aec --homozyg-kb 100 --homozyg --homozyg-gap 500 --out A_Droso_F0
+sed '1d' A_Droso_F0.hom.indiv > temp6
+awk '{print ($5/119000)}' temp6 > temp7
+rm temp6
+
+./plink1.9 --file Droso_F025 --aec --indep-pairwise 50 5 0.9 --out prunned
+./plink1.9 --file Droso_F025 --aec --make-bed --recode --extract prunned.prune.in --out data_prunned
+./plink1.9 --file data_prunned --aec --homozyg-kb 100 --homozyg --homozyg-gap 500 --out A_Droso_F025
+sed '1d' A_Droso_F025.hom.indiv > temp6
+awk '{print ($5/119000)}' temp6 > temp7
+rm temp6
+
+./plink1.9 --file Droso_ALL --aec --indep-pairwise 50 5 0.9 --out prunned
+./plink1.9 --file Droso_ALL --aec --make-bed --recode --extract prunned.prune.in --out data_prunned
+./plink1.9 --file data_prunned --aec --homozyg-kb 100 --homozyg --homozyg-gap 500 --out A_Droso_ALL
+sed '1d' A_Droso_ALL.hom.indiv > temp6
+awk '{print ($5/119000)}' temp6 > temp7
+rm temp6
+
+
+### --homozyg-window-snp 100,60,10 ###
+
+./plink1.9 --file Droso_F0 --aec --indep-pairwise 50 5 0.9 --out prunned
+./plink1.9 --file Droso_F0 --aec --make-bed --recode --extract prunned.prune.in --out data_prunned
+./plink1.9 --file data_prunned --aec --homozyg-kb 100 --homozyg --homozyg-window-snp 100 --out A_Droso_F0
+sed '1d' A_Droso_F0.hom.indiv > temp6
+awk '{print ($5/119000)}' temp6 > temp7
+rm temp6
+
+./plink1.9 --file Droso_F025 --aec --indep-pairwise 50 5 0.9 --out prunned
+./plink1.9 --file Droso_F025 --aec --make-bed --recode --extract prunned.prune.in --out data_prunned
+./plink1.9 --file data_prunned --aec --homozyg-kb 100 --homozyg --homozyg-window-snp 100 --out A_Droso_F025
+sed '1d' A_Droso_F025.hom.indiv > temp6
+awk '{print ($5/119000)}' temp6 > temp7
+rm temp6
+
+./plink1.9 --file Droso_ALL --aec --indep-pairwise 50 5 0.9 --out prunned
+./plink1.9 --file Droso_ALL --aec --make-bed --recode --extract prunned.prune.in --out data_prunned
+./plink1.9 --file data_prunned --aec --homozyg-kb 100 --homozyg --homozyg-window-snp 100 --out A_Droso_ALL
+sed '1d' A_Droso_ALL.hom.indiv > temp6
+awk '{print ($5/119000)}' temp6 > temp7
+rm temp6
+
+
+### --homozyg-snp 60, 30 ###
+
+./plink1.9 --file Droso_F0 --aec --indep-pairwise 50 5 0.9 --out prunned
+./plink1.9 --file Droso_F0 --aec --make-bed --recode --extract prunned.prune.in --out data_prunned
+./plink1.9 --file data_prunned --aec --homozyg-kb 100 --homozyg --homozyg-snp 60 --out A_Droso_F0
+sed '1d' A_Droso_F0.hom.indiv > temp6
+awk '{print ($5/119000)}' temp6 > temp7
+rm temp6
+
+./plink1.9 --file Droso_F025 --aec --indep-pairwise 50 5 0.9 --out prunned
+./plink1.9 --file Droso_F025 --aec --make-bed --recode --extract prunned.prune.in --out data_prunned
+./plink1.9 --file data_prunned --aec --homozyg-kb 100 --homozyg --homozyg-snp 60 --out A_Droso_F025
+sed '1d' A_Droso_F025.hom.indiv > temp6
+awk '{print ($5/119000)}' temp6 > temp7
+rm temp6
+
+./plink1.9 --file Droso_ALL --aec --indep-pairwise 50 5 0.9 --out prunned
+./plink1.9 --file Droso_ALL --aec --make-bed --recode --extract prunned.prune.in --out data_prunned
+./plink1.9 --file data_prunned --aec --homozyg-kb 100 --homozyg --homozyg-snp 60 --out A_Droso_ALL
+sed '1d' A_Droso_ALL.hom.indiv > temp6
+awk '{print ($5/119000)}' temp6 > temp7
+rm temp6
+
+
+### --homozyg-window-snp 60 --homozyg-snp 60 ###
+
+./plink1.9 --file Droso_F0 --aec --indep-pairwise 50 5 0.9 --out prunned
+./plink1.9 --file Droso_F0 --aec --make-bed --recode --extract prunned.prune.in --out data_prunned
+./plink1.9 --file data_prunned --aec --homozyg-kb 100 --homozyg --homozyg-window-snp 60 --homozyg-snp 60 --out A_Droso_F0
+sed '1d' A_Droso_F0.hom.indiv > temp6
+awk '{print ($5/119000)}' temp6 > temp7
+rm temp6
+
+./plink1.9 --file Droso_F025 --aec --indep-pairwise 50 5 0.9 --out prunned
+./plink1.9 --file Droso_F025 --aec --make-bed --recode --extract prunned.prune.in --out data_prunned
+./plink1.9 --file data_prunned --aec --homozyg-kb 100 --homozyg --homozyg-window-snp 60 --homozyg-snp 60 --out A_Droso_F025
+sed '1d' A_Droso_F025.hom.indiv > temp6
+awk '{print ($5/119000)}' temp6 > temp7
+rm temp6
+
+./plink1.9 --file Droso_ALL --aec --indep-pairwise 50 5 0.9 --out prunned
+./plink1.9 --file Droso_ALL --aec --make-bed --recode --extract prunned.prune.in --out data_prunned
+./plink1.9 --file data_prunned --aec --homozyg-kb 100 --homozyg --homozyg-window-snp 60 --homozyg-snp 60 --out A_Droso_ALL
+sed '1d' A_Droso_ALL.hom.indiv > temp6
+awk '{print ($5/119000)}' temp6 > temp7
+rm temp6
+
+
+### --homozyg-window-snp 60 --homozyg-snp 60 --homozyg-window-threshold 0.08 ###
+
+./plink1.9 --file Droso_F0 --aec --indep-pairwise 50 5 0.9 --out prunned
+./plink1.9 --file Droso_F0 --aec --make-bed --recode --extract prunned.prune.in --out data_prunned
+./plink1.9 --file data_prunned --aec --homozyg-kb 100 --homozyg --homozyg-window-snp 60 --homozyg-snp 60 --homozyg-window-threshold 0.08 --out A_Droso_F0
+sed '1d' A_Droso_F0.hom.indiv > temp6
+awk '{print ($5/119000)}' temp6 > temp7
+rm temp6
+
+./plink1.9 --file Droso_F025 --aec --indep-pairwise 50 5 0.9 --out prunned
+./plink1.9 --file Droso_F025 --aec --make-bed --recode --extract prunned.prune.in --out data_prunned
+./plink1.9 --file data_prunned --aec --homozyg-kb 100 --homozyg --homozyg-window-snp 60 --homozyg-snp 60 --homozyg-window-threshold 0.08 --out A_Droso_F025
+sed '1d' A_Droso_F025.hom.indiv > temp6
+awk '{print ($5/119000)}' temp6 > temp7
+rm temp6
+
+./plink1.9 --file Droso_ALL --aec --indep-pairwise 50 5 0.9 --out prunned
+./plink1.9 --file Droso_ALL --aec --make-bed --recode --extract prunned.prune.in --out data_prunned
+./plink1.9 --file data_prunned --aec --homozyg-kb 100 --homozyg --homozyg-window-snp 60 --homozyg-snp 60 --homozyg-window-threshold 0.08 --out A_Droso_ALL
+sed '1d' A_Droso_ALL.hom.indiv > temp6
+awk '{print ($5/119000)}' temp6 > temp7
+rm temp6
+
+
+### --homozyg-window-threshold 0.1 ###
+
+./plink1.9 --file Droso_F0 --aec --indep-pairwise 50 5 0.9 --out prunned
+./plink1.9 --file Droso_F0 --aec --make-bed --recode --extract prunned.prune.in --out data_prunned
+./plink1.9 --file data_prunned --aec --homozyg-kb 100 --homozyg --homozyg-window-threshold 0.1 --out A_Droso_F0
+sed '1d' A_Droso_F0.hom.indiv > temp6
+awk '{print ($5/119000)}' temp6 > temp7
+rm temp6
+
+./plink1.9 --file Droso_F025 --aec --indep-pairwise 50 5 0.9 --out prunned
+./plink1.9 --file Droso_F025 --aec --make-bed --recode --extract prunned.prune.in --out data_prunned
+./plink1.9 --file data_prunned --aec --homozyg-kb 100 --homozyg --homozyg-window-threshold 0.1 --out A_Droso_F025
+sed '1d' A_Droso_F025.hom.indiv > temp6
+awk '{print ($5/119000)}' temp6 > temp7
+rm temp6
+
+./plink1.9 --file Droso_ALL --aec --indep-pairwise 50 5 0.9 --out prunned
+./plink1.9 --file Droso_ALL --aec --make-bed --recode --extract prunned.prune.in --out data_prunned
+./plink1.9 --file data_prunned --aec --homozyg-kb 100 --homozyg --homozyg-window-threshold 0.1 --out A_Droso_ALL
+sed '1d' A_Droso_ALL.hom.indiv > temp6
+awk '{print ($5/119000)}' temp6 > temp7
+rm temp6
+
+
+### --homozyg-window-het 0 --homozyg-window-missing 1 ###
+
+./plink1.9 --file Droso_F0 --aec --indep-pairwise 50 5 0.9 --out prunned
+./plink1.9 --file Droso_F0 --aec --make-bed --recode --extract prunned.prune.in --out data_prunned
+./plink1.9 --file data_prunned --aec --homozyg-kb 100 --homozyg --homozyg-window-het 0 --homozyg-window-missing 1 --out A_Droso_F0
+sed '1d' A_Droso_F0.hom.indiv > temp6
+awk '{print ($5/119000)}' temp6 > temp7
+rm temp6
+
+./plink1.9 --file Droso_F025 --aec --indep-pairwise 50 5 0.9 --out prunned
+./plink1.9 --file Droso_F025 --aec --make-bed --recode --extract prunned.prune.in --out data_prunned
+./plink1.9 --file data_prunned --aec --homozyg-kb 100 --homozyg --homozyg-window-het 0 --homozyg-window-missing 1 --out A_Droso_F025
+sed '1d' A_Droso_F025.hom.indiv > temp6
+awk '{print ($5/119000)}' temp6 > temp7
+rm temp6
+
+./plink1.9 --file Droso_ALL --aec --indep-pairwise 50 5 0.9 --out prunned
+./plink1.9 --file Droso_ALL --aec --make-bed --recode --extract prunned.prune.in --out data_prunned
+./plink1.9 --file data_prunned --aec --homozyg-kb 100 --homozyg --homozyg-window-het 0 --homozyg-window-missing 1 --out A_Droso_ALL
+sed '1d' A_Droso_ALL.hom.indiv > temp6
+awk '{print ($5/119000)}' temp6 > temp7
+rm temp6
+
+
+### --homozyg-density 1 --homozyg-gap 500 --homozyg-window-threshold 0.1 --homozyg-window-het 0 --homozyg-window-missing 1 ###
+
+./plink1.9 --file Droso_F0 --aec --indep-pairwise 50 5 0.9 --out prunned
+./plink1.9 --file Droso_F0 --aec --make-bed --recode --extract prunned.prune.in --out data_prunned
+./plink1.9 --file data_prunned --aec --homozyg-kb 100 --homozyg --homozyg-density 1 --homozyg-gap 500 --homozyg-window-threshold 0.1 --homozyg-window-het 0 --homozyg-window-missing 1 --out A_Droso_F0
+sed '1d' A_Droso_F0.hom.indiv > temp6
+awk '{print ($5/119000)}' temp6 > temp7
+rm temp6
+
+./plink1.9 --file Droso_F025 --aec --indep-pairwise 50 5 0.9 --out prunned
+./plink1.9 --file Droso_F025 --aec --make-bed --recode --extract prunned.prune.in --out data_prunned
+./plink1.9 --file data_prunned --aec --homozyg-kb 100 --homozyg --homozyg-density 1 --homozyg-gap 500 --homozyg-window-threshold 0.1 --homozyg-window-het 0 --homozyg-window-missing 1 --out A_Droso_F025
+sed '1d' A_Droso_F025.hom.indiv > temp6
+awk '{print ($5/119000)}' temp6 > temp7
+rm temp6
+
+./plink1.9 --file Droso_ALL --aec --indep-pairwise 50 5 0.9 --out prunned
+./plink1.9 --file Droso_ALL --aec --make-bed --recode --extract prunned.prune.in --out data_prunned
+./plink1.9 --file data_prunned --aec --homozyg-kb 100 --homozyg --homozyg-density 1 --homozyg-gap 500 --homozyg-window-threshold 0.1 --homozyg-window-het 0 --homozyg-window-missing 1 --out A_Droso_ALL
+sed '1d' A_Droso_ALL.hom.indiv > temp6
+awk '{print ($5/119000)}' temp6 > temp7
+rm temp6
+
+
+
+
+# ********* FROH-1 ********* #
+
+### --homozyg-window-het 0 --homozyg-window-missing 1 ###
+
+./plink1.9 --file Droso_F0 --aec --indep-pairwise 50 5 0.9 --out prunned
+./plink1.9 --file Droso_F0 --aec --make-bed --recode --extract prunned.prune.in --out data_prunned
+./plink1.9 --file data_prunned --aec --homozyg-kb 1000 --homozyg --homozyg-window-het 0 --homozyg-window-missing 1 --out A_Droso_F0
+sed '1d' A_Droso_F0.hom.indiv > temp6
+awk '{print ($5/119000)}' temp6 > temp7
+rm temp6
+
+./plink1.9 --file Droso_F025 --aec --indep-pairwise 50 5 0.9 --out prunned
+./plink1.9 --file Droso_F025 --aec --make-bed --recode --extract prunned.prune.in --out data_prunned
+./plink1.9 --file data_prunned --aec --homozyg-kb 1000 --homozyg --homozyg-window-het 0 --homozyg-window-missing 1 --out A_Droso_F025
+sed '1d' A_Droso_F025.hom.indiv > temp6
+awk '{print ($5/119000)}' temp6 > temp7
+rm temp6
+
+./plink1.9 --file Droso_ALL --aec --indep-pairwise 50 5 0.9 --out prunned
+./plink1.9 --file Droso_ALL --aec --make-bed --recode --extract prunned.prune.in --out data_prunned
+./plink1.9 --file data_prunned --aec --homozyg-kb 1000 --homozyg --homozyg-window-het 0 --homozyg-window-missing 1 --out A_Droso_ALL
+sed '1d' A_Droso_ALL.hom.indiv > temp6
+awk '{print ($5/119000)}' temp6 > temp7
+rm temp6
+
+
+
+
+
+
