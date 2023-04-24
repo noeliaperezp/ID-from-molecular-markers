@@ -1,0 +1,52 @@
+// Keywords: 
+
+// set up a simple neutral simulation
+initialize()
+{
+	// define here the name of the files
+	defineConstant("file_output1","./collect_par_mutations.txt"); // output file
+
+	// set the overall mutation rate
+	initializeMutationRate(0.8e-9);
+	
+	// m1 / m2 mutation type: neutral / deleterious
+	initializeMutationType("m1", 0.0, "f", 0.0);
+	initializeMutationType("m2", 0.0, "g", -0.2, 0.33);
+	
+	// g1 genomic element type: uses m1 for all mutations
+	initializeGenomicElementType("g1", c(m1,m2), c(1.0,0.0));
+	
+	// uniform chromosome of length 2000 Mb
+	initializeGenomicElement(g1, 0, 1999999999);
+	
+	// recombination along the chromosomes
+	initializeRecombinationRate(c(1e-8,0.5,1e-8,0.5,1e-8,0.5,1e-8,0.5,1e-8,0.5,1e-8,0.5,1e-8,0.5,1e-8,0.5,1e-8,0.5,1e-8,0.5,1e-8,0.5,1e-8,0.5,1e-8,0.5,1e-8,0.5,1e-8,0.5,1e-8,0.5,1e-8,0.5,1e-8,0.5,1e-8,0.5,1e-8), c(99999999,100000000,199999999,200000000,299999999,300000000,399999999,400000000,499999999,500000000,599999999,600000000,699999999,700000000,799999999,800000000,899999999,900000000,999999999,1000000000,1099999999,1100000000,1199999999,1200000000,1299999999,1300000000,1399999999,1400000000,1499999999,1500000000,1599999999,1600000000,1699999999,1700000000,1799999999,1800000000,1899999999,1900000000,1999999999));
+
+	writeFile(filePath=file_output1,contents=(""),append=F);
+}
+
+// create a population of 1000 individuals
+1
+{
+	sim.addSubpop("p1", 1000);
+}
+
+mutation(m2) {
+    K = 7.6;	
+    mut.setValue("hh", runif(1,0,exp(K*mut.selectionCoeff)));
+	writeFile(filePath=file_output1,contents=(mut.getValue("hh") +
+	      "\t" + mut.selectionCoeff + "\t" + mut.position),append=T);
+    //debugging 	
+    return T;
+}
+fitness(m2) {	
+    hh = homozygous? 1 else mut.getValue("hh");	
+    return 1.0 + hh * mut.selectionCoeff; // 1 + hs
+}
+
+// run to generation 10000
+10000
+{
+	sim.outputFull();
+	//sim.simulationFinished();
+ }
